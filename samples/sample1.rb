@@ -21,7 +21,9 @@ DuckDB::Database.open do |db|
     #
     # PreparedStatement クラスには、PreparedStatement#_bind_date(index, year, month, day) という
     # private method が存在している。
-    # _bind_date メソッドを使って bind_date メソッドを実装してください。
+    #  ( stmt.send(:_bind_date, 1, 2021, 12, 2) は動作する)
+    #
+    # _bind_date メソッドを使って public method bind_date を実装してください。
     #
     # STEP 2
     # stmt.bind_date(1, Time.now) でも動くようにしてください。

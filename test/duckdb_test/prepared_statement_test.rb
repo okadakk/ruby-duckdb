@@ -328,6 +328,20 @@ module DuckDBTest
       assert_equal(1, result.each.first[0])
     end
 
+    # FIXME: STEP1
+    def test_bind_date
+      con = PreparedStatementTest.con
+
+      stmt = DuckDB::PreparedStatement.new(con, 'SELECT * FROM a WHERE col_date = $1')
+
+      return unless stmt.respond_to?(:_bind_date, true)
+
+      today = PreparedStatementTest.today
+      stmt.bind_date(1, today)
+      result = stmt.execute
+      assert_equal(1, result.each.first[0])
+    end
+
     def test__bind_time
       con = PreparedStatementTest.con
 
