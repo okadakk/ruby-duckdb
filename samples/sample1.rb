@@ -10,7 +10,9 @@ DuckDB::Database.open do |db|
     con.query("INSERT INTO dates VALUES ('#{today.strftime('%Y-%m-%d')}')")
 
     stmt = DuckDB::PreparedStatement.new(con, 'SELECT * FROM dates WHERE col_date = $1')
-    stmt.bind_varchar(1, today.strftime('%Y-%m-%d'))
+    # stmt.bind_varchar(1, today.strftime('%Y-%m-%d'))
+    # stmt.send(:_bind_date, 1, 2021, 12, 9)
+    stmt.bind_date(1, today)
 
     #
     # STEP 1
