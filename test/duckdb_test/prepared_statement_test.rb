@@ -383,7 +383,8 @@ module DuckDBTest
       result = stmt.execute
       assert_equal(1, result.each.first[0])
 
-      stmt.bind_time(1, now.inspect)
+      strtime = RUBY_VERSION == '2.6.9' ? now.strftime('%F %T.%6N') : now.inspect
+      stmt.bind_time(1, strtime)
       result = stmt.execute
       assert_equal(1, result.each.first[0])
 
