@@ -47,7 +47,7 @@ static VALUE to_ruby_obj_integer(duckdb_result *result, idx_t col_idx, idx_t row
 
 static VALUE to_ruby_obj_bigint(duckdb_result *result, idx_t col_idx, idx_t row_idx) {
     int64_t i64val = duckdb_value_int64(result, col_idx, row_idx);
-    return rb_int2big(i64val);
+    return rb_int2inum(i64val);
 }
 
 static VALUE to_ruby_obj_float(duckdb_result *result, idx_t col_idx, idx_t row_idx) {
